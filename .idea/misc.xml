@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/drawable/about.xml" value="0.2265" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/drawable/home.xml" value="0.124" />
         <entry key="..\:/NotBasicTodoList/app/src/main/res/drawable/nav_background_curved.xml" value="0.1745" />
         <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/activity_main_page.xml" value="0.21784420289855072" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/activity_main_page.xml" value="0.1" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/custom_dialog.xml" value="0.37720111214087115" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/fragment_info.xml" value="0.21784420289855072" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/fragment_item_list.xml" value="0.21784420289855072" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/fragment_todo.xml" value="0.264" />
+        <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/itemlist.xml" value="0.4" />
         <entry key="..\:/NotBasicTodoList/app/src/main/res/layout/toolbar.xml" value="0.165625" />
         <entry key="..\:/NotBasicTodoList/app/src/main/res/menu/menu_bottom.xml" value="0.165625" />
       </map>

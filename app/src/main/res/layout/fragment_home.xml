@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Home">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout   android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+
+        android:textSize="28dp"
+        android:text="Welcome User" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="50dp"
+            android:id="@+id/ShowTaskDialog"
+            android:layout_height="50dp"
+
+            app:icon="@drawable/add"
+            app:iconSize="25dp"
+            app:iconGravity="textStart"
+            app:backgroundTint="#B41BC0A7"
+            app:iconPadding="0dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_gravity="bottom"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+            />
+    </LinearLayout>
+</FrameLayout>
