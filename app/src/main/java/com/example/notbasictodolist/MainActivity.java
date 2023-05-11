@@ -5,20 +5,27 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -35,7 +42,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements NfcAdapter.ReaderCallback {
 Button signButton,SignWithQR;
-
+    private static final String CHANNEL_ID = "my_channel_id";
     private PendingIntent pendingIntent;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_CAMERA_PERMISSION = 1;
@@ -46,6 +53,8 @@ Button signButton,SignWithQR;
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+
+
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         SignWithQR=findViewById(R.id.SignQRCode);
         signButton=findViewById(R.id.SignButton);
@@ -69,17 +78,20 @@ Button signButton,SignWithQR;
         });
 
         // Create an intent to launch this activity when an NFC tag is detected
-        Intent intent = new Intent(this, getClass());
+
 
     signButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                NotificationHandler notificationHandler=new NotificationHandler();
                 Intent intent=new Intent(MainActivity.this,MainPage.class);
                 startActivity(intent);
             }
         });
     }
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

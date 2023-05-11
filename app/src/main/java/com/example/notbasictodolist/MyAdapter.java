@@ -14,7 +14,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MyAdapter extends ArrayAdapter<DataModel> {
 
@@ -34,10 +40,22 @@ public class MyAdapter extends ArrayAdapter<DataModel> {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.itemlist, parent, false);
         }
-
+TextView DateText=convertView.findViewById(R.id.DateText);
         TextView nameTextView = convertView.findViewById(R.id.Name);
         CheckBox checkBox=convertView.findViewById(R.id.checkBox);
         DBHandler DBHandler = new DBHandler(getContext());
+
+NotificationHandler notificationHandler=new NotificationHandler();
+
+DateUtils dateUtils=new DateUtils();
+
+        System.out.println();
+        String date = null;
+        date = dateUtils.getDateOneDayBefore(dataModelList.get(position).getisDate());
+        NotificationScheduler.scheduleNotification(context, "", dataModelList.get(position).getTask(), date);
+
+
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -47,6 +65,7 @@ public class MyAdapter extends ArrayAdapter<DataModel> {
                    DBHandler.updateIsDone(dataModelList.get(position).getId(),"0");
                }
             }
+
         });
 
 
@@ -55,6 +74,7 @@ public class MyAdapter extends ArrayAdapter<DataModel> {
 
         // Set the values of the TextViews from the DataModel object
         nameTextView.setText(dataModelList.get(position).getTask());
+        DateText.setText("End Date:"+dataModelList.get(position).getisDate());
         if (Integer.parseInt(dataModelList.get(position).getisDone()) == 0) {
             checkBox.setChecked(false);
         }else {

@@ -6,6 +6,7 @@ public class DataModel {
     int id;
     String Task;
     String isDone;
+    String Date;
  public int getId() {
         return id;
     }
@@ -16,6 +17,14 @@ public class DataModel {
     public String getisDone() {
         return isDone;
     }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
+    public String getisDate() {
+        return Date;
+    }
+
 
     public void setId(int id) {
         this.id = id;

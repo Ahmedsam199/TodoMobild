@@ -31,7 +31,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TEST_TABLE = "CREATE TABLE " + TABLE_TEST + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_TEXT + " TEXT,"
-                + "IsDone TEXT DEFAULT 0" + ")";
+                + "IsDone TEXT DEFAULT 0,"+ "Date TEXT DEFAULT 0" + ")";
         sqLiteDatabase.execSQL(CREATE_TEST_TABLE);
     }
 
@@ -43,17 +43,27 @@ public class DBHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(sqLiteDatabase);
     }
-    void addTask(String dataModel) {
+    void addTask(String dataModel,String Date) {
         SQLiteDatabase db = this.getWritableDatabase();
-
+System.out.println( dataModel+ Date);
         ContentValues values = new ContentValues();
         values.put(KEY_TEXT, dataModel); // Contact Name
-
+values.put("Date",Date);
         // Inserting Row
         db.insert(TABLE_TEST, null, values);
         //2nd argument is String containing nullColumnHack
         db.close(); // Closing database connection
     }
+    public void DeleteDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String CREATE_TEST_TABLE = "CREATE TABLE " + TABLE_TEST + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_TEXT + " TEXT,"
+                + "IsDone TEXT DEFAULT 0,"+ "Date TEXT DEFAULT 0" + ")";
+
+        db.execSQL(CREATE_TEST_TABLE);
+    }
+
     public List<DataModel> getAllContacts() {
         SQLiteDatabase db = this.getWritableDatabase();
         List<DataModel> contacts = new ArrayList<>();
@@ -67,6 +77,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 contact.setId(Integer.parseInt(cursor.getString(0)));
                 contact.setTask(cursor.getString(1));
                 contact.setisDone(cursor.getString(2));
+                contact.setDate(cursor.getString(3));
                 contacts.add(contact);
             } while (cursor.moveToNext());
         }

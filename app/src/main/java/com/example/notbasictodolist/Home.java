@@ -1,6 +1,9 @@
 package com.example.notbasictodolist;
 
+
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +36,7 @@ public class Home extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+private String Date;
     public Home() {
         // Required empty public constructor
 
@@ -69,6 +76,7 @@ public class Home extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Button button= rootView.findViewById(R.id.ShowTaskDialog);
+
         button.setOnClickListener(this);
         return rootView;
 
@@ -81,13 +89,23 @@ public class Home extends Fragment implements View.OnClickListener {
     dialog.setContentView(R.layout.custom_dialog);
     dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
    dialog.show();
+
     Button button=(Button) dialog.findViewById(R.id.InsertTask);
     EditText editText=(EditText) dialog.findViewById(R.id.TaskText);
+    CalendarView calendarView=(CalendarView)dialog.findViewById(R.id.calendar);
+
+    calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        @Override
+        public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+           Date=(i+"-"+i1+"-"+i2);
+        }
+    });
+    System.out.println(Date);
     button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            System.out.println("Inside");
-            DBHandler.addTask(editText.getText().toString());
+//DBHandler.DeleteDB();
+            DBHandler.addTask(editText.getText().toString(),Date);
             dialog.dismiss();
         }
     });
